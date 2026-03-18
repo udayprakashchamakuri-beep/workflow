@@ -1,0 +1,29 @@
+{
+  "servers": {
+    "project-files": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\udayp\\.picoclaw\\workspace\\Hackathon\\mcp-server\\hackathon-mcp.js"
+      ],
+      "env": {
+        "PROJECT_ROOT": "C:\\Users\\udayp\\.picoclaw\\workspace\\Hackathon"
+      }
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${input:github_token}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "github_token",
+      "type": "promptString",
+      "description": "GitHub token for MCP tools that need GitHub access",
+      "password": true
+    }
+  ]
+}

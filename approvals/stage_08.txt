@@ -1,0 +1,7 @@
+PENDING
+
+Use one of:
+- APPROVE STAGE 08
+- CHANGE STAGE 08: <feedback>
+- STOP
+
