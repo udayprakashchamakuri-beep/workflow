@@ -1,26 +1,27 @@
 # Project State
 
 Project name:
-- 
+- Syllabus Sprint
 
 Current stage:
-- `00_intake`
+- `06_build`
 
 Status:
-- `not_started`
+- `in_progress`
 
 Latest approved artifact:
-- none
+- Milestone 01 branch created
 
 Latest requested changes:
 - none
 
 Open risks:
-- none
+- AI parsing and planning logic are not connected yet
 
 Next action:
-- Fill intake files and run Stage 01 PRD prompt
+- Continue milestone 01 implementation on the front-end foundation
 
 Change log:
 - Workspace scaffold created
-
+- Added first project idea details
+- Started milestone 01 front-end implementation
