@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syllabus Sprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand-lockup">
+          <span class="brand-mark">SS</span>
+          <div>
+            <p class="eyebrow">Milestone 01</p>
+            <h1>Syllabus Sprint</h1>
+          </div>
+        </div>
+        <div class="topbar-meta">
+          <span>Student planning beta</span>
+          <button type="button">Invite teammate</button>
+        </div>
+      </nav>
+
+      <section class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">AI Study Planner</p>
+          <h2>Turn a messy syllabus into a calm weekly study plan.</h2>
+          <p class="hero-text">
+            Upload a course syllabus, confirm the important dates, and get a study plan
+            that breaks down your work into focused sessions before the pressure spikes.
+          </p>
+
+          <div class="hero-highlights">
+            <article>
+              <strong>Upload once</strong>
+              <span>Drop in a syllabus PDF or paste key deadlines.</span>
+            </article>
+            <article>
+              <strong>Plan fast</strong>
+              <span>See a week-by-week study rhythm in seconds.</span>
+            </article>
+            <article>
+              <strong>Stay steady</strong>
+              <span>Mix revision, assignments, and exam prep in one view.</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <p class="eyebrow">Today at a glance</p>
+          <div class="pulse-card">
+            <strong>3 tasks auto-arranged</strong>
+            <p>Wednesday adapts around your class hours and saves your toughest topic for your best focus block.</p>
+          </div>
+          <div class="metric-grid">
+            <div>
+              <span class="metric-value">6h</span>
+              <span class="metric-label">Free study time found</span>
+            </div>
+            <div>
+              <span class="metric-value">4</span>
+              <span class="metric-label">Deadlines detected</span>
+            </div>
+            <div>
+              <span class="metric-value">92%</span>
+              <span class="metric-label">Plan confidence</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main class="workspace">
+      <section class="panel intake-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h3>Bring in your syllabus</h3>
+          </div>
+          <span class="status-pill">Front-end foundation</span>
+        </div>
+
+        <form id="planner-form" class="planner-form">
+          <label class="upload-zone" for="syllabus-file">
+            <input id="syllabus-file" type="file" accept=".pdf,.doc,.docx,.txt">
+            <span class="upload-icon">+</span>
+            <strong>Upload syllabus</strong>
+            <small id="file-label">PDF, DOCX, or TXT. We will show the file name here.</small>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              <span>Course name</span>
+              <input id="course-name" type="text" placeholder="Intro to Biology">
+            </label>
+            <label>
+              <span>Exam date</span>
+              <input id="exam-date" type="date">
+            </label>
+            <label>
+              <span>Study hours per week</span>
+              <input id="study-hours" type="number" min="1" max="40" value="8">
+            </label>
+            <label>
+              <span>Focus style</span>
+              <select id="focus-style">
+                <option value="steady">Steady and balanced</option>
+                <option value="sprint">Sprint near deadlines</option>
+                <option value="deep">Deep work blocks</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="textarea-field">
+            <span>Paste important syllabus notes</span>
+            <textarea id="syllabus-notes" rows="7" placeholder="Example: Assignment 1 due April 9. Midterm on April 25. Units 1 to 3 need revision. Weekly lab every Thursday."></textarea>
+          </label>
+
+          <div class="button-row">
+            <button id="generate-button" type="submit" class="primary-button">Generate study plan</button>
+            <button id="sample-button" type="button" class="secondary-button">Load sample</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel plan-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h3>Your first-week study plan</h3>
+          </div>
+          <span id="plan-badge" class="status-pill muted">Waiting for input</span>
+        </div>
+
+        <div id="plan-summary" class="plan-summary">
+          <p>Upload a syllabus or load the sample to generate a study plan preview.</p>
+        </div>
+
+        <div id="plan-list" class="plan-list" aria-live="polite"></div>
+      </section>
+
+      <section class="panel lower-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 3</p>
+            <h3>What comes next</h3>
+          </div>
+        </div>
+
+        <div class="milestone-grid">
+          <article>
+            <strong>Next milestone</strong>
+            <p>Connect a real parser and AI planner so uploaded syllabus text becomes structured tasks.</p>
+          </article>
+          <article>
+            <strong>After that</strong>
+            <p>Add a calendar view, focus timer, and smarter revision scheduling based on exam dates.</p>
+          </article>
+          <article>
+            <strong>Security checks</strong>
+            <p>This branch is already wired to run Semgrep and Trivy on draft pull requests.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
