@@ -82,6 +82,27 @@ function updateFileLabel() {
   fileLabel.textContent = `${file.name} selected. Ready for the first planning pass.`;
 }
 
+function clearElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+function addTextParagraph(parent, text) {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = text;
+  parent.appendChild(paragraph);
+}
+
+function addLabeledValueParagraph(parent, prefix, value) {
+  const paragraph = document.createElement("p");
+  paragraph.appendChild(document.createTextNode(prefix));
+  const strong = document.createElement("strong");
+  strong.textContent = value;
+  paragraph.appendChild(strong);
+  parent.appendChild(paragraph);
+}
+
 function buildPlan() {
   const courseName = courseNameInput.value.trim() || "your course";
   const examDate = examDateInput.value || "not set yet";
@@ -93,29 +114,38 @@ function buildPlan() {
   planBadge.textContent = "Preview generated";
   planBadge.classList.remove("muted");
 
-  planSummary.innerHTML = `
-    <p>
-      We generated a first-week preview for <strong>${courseName}</strong>.
-      The plan is shaped around <strong>${studyHours} study hours</strong> per week,
-      a <strong>${focusStyle}</strong> focus style, and an exam date of
-      <strong>${examDate}</strong>.
-    </p>
-    <p>
-      ${notes ? `Key syllabus note captured: "${notes.slice(0, 110)}${notes.length > 110 ? "..." : ""}"` : "Add more syllabus notes later to make the AI plan smarter."}
-    </p>
-  `;
+  clearElement(planSummary);
+  addLabeledValueParagraph(planSummary, "We generated a first-week preview for ", courseName);
+  addTextParagraph(
+    planSummary,
+    `The plan is shaped around ${studyHours} study hours per week, a ${focusStyle} focus style, and an exam date of ${examDate}.`
+  );
+  addTextParagraph(
+    planSummary,
+    notes
+      ? `Key syllabus note captured: "${notes.slice(0, 110)}${notes.length > 110 ? "..." : ""}"`
+      : "Add more syllabus notes later to make the AI plan smarter."
+  );
 
-  planList.innerHTML = "";
+  clearElement(planList);
   template.forEach((item, index) => {
     const planItem = document.createElement("article");
     planItem.className = "plan-item";
-    planItem.innerHTML = `
-      <header>
-        <strong>Session ${index + 1}: ${item.title}</strong>
-        <span class="plan-tag">${item.tag}</span>
-      </header>
-      <p>${item.detail}</p>
-    `;
+
+    const header = document.createElement("header");
+    const title = document.createElement("strong");
+    title.textContent = `Session ${index + 1}: ${item.title}`;
+    const tag = document.createElement("span");
+    tag.className = "plan-tag";
+    tag.textContent = item.tag;
+    header.appendChild(title);
+    header.appendChild(tag);
+
+    const detail = document.createElement("p");
+    detail.textContent = item.detail;
+
+    planItem.appendChild(header);
+    planItem.appendChild(detail);
     planList.appendChild(planItem);
   });
 }
