@@ -44,16 +44,21 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Generate Trivy JSON report
-        uses: aquasecurity/trivy-action@0.33.1
+      - name: Set up Trivy
+        uses: aquasecurity/setup-trivy@v0.2.2
         with:
-          scan-type: "fs"
-          scan-ref: "."
-          format: "json"
-          output: "trivy-report.json"
-          exit-code: "0"
-          ignore-unfixed: true
-          severity: "HIGH,CRITICAL"
+          version: "v0.68.1"
+
+      - name: Generate Trivy JSON report
+        run: >
+          trivy fs
+          --scanners vuln,secret
+          --severity HIGH,CRITICAL
+          --ignore-unfixed
+          --format json
+          --output trivy-report.json
+          --exit-code 0
+          .
 
       - name: Upload Trivy report
         if: always()
@@ -64,13 +69,11 @@ jobs:
           retention-days: 14
 
       - name: Fail on high or critical vulnerabilities
-        uses: aquasecurity/trivy-action@0.33.1
-        with:
-          scan-type: "fs"
-          scan-ref: "."
-          format: "table"
-          exit-code: "1"
-          ignore-unfixed: true
-          severity: "HIGH,CRITICAL"
-          skip-setup-trivy: true
-
+        run: >
+          trivy fs
+          --scanners vuln,secret
+          --severity HIGH,CRITICAL
+          --ignore-unfixed
+          --format table
+          --exit-code 1
+          .
