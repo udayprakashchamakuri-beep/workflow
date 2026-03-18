@@ -32,3 +32,5 @@ Integration helpers:
 - PR-stage review prompt: `prompts/07_github_pr_review_prompt.md`
 - GitHub repo setup guide: `GITHUB_SETUP.md`
 - CodeRabbit repo config: `.coderabbit.yaml`
+- Free security workflow: `.github/workflows/security-scans.yml`
+- Free scan notes: `07_review/FREE_SECURITY_SCANS.md`
